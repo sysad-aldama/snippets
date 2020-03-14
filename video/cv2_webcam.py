@@ -3,6 +3,7 @@
 # Note: I highly recommend installing anaconda for python 3.x 
 # Anaconda installer: https://www.anaconda.com/distribution/
 # Written by: JP Aldama [Quaxis Corporation for Research & Innovation]
+
 import cv2
 import numpy as np
 
@@ -13,9 +14,10 @@ MESSAGES = [
     '[cv2_webcam info] Program started... ',                           # MESSAGES[0]
     '[cv2_webcam info] Webcam initializing...',                        # MESSAGES[1]       
     '[cv2_webcam info] Webcam loaded!',                                # MESSAGES[2]
-    '[cv2_webcam info] Press <q> to exit program',                       # MESSAGES[3]
+    '[cv2_webcam info] Press <q> to exit program',                     # MESSAGES[3]
+    '[cv2_webcam info] Program Running...',                            # MESSAGES[4]
     '[cv2_webcam info] Program exiting...',                            # MESSAGES[-3]
-    '[cv2_webcam info] ERROR: webcam unavailable. Program exiting...', # MESSAGes[-2]
+    '[cv2_webcam info] ERROR: webcam unavailable. Program exiting...', # MESSAGES[-2]
     '[cv2_webcam info] ERROR: Frame not received. Program exiting...', # MESSAGES[-1]
 ]
 
@@ -43,7 +45,7 @@ if not capture.isOpened():
     print(current_message)
     exit()
 else: 
-    current_message = '[cv2_webcam info] Program Running...'    
+    current_message = MESSAGES[4]    
     print(current_message)
 
 current_message = MESSAGES[3]
@@ -69,7 +71,7 @@ while True:
     cv2.imshow('cv2_webcam example', grayscale)
     
     # Wait for key 'q' to terminate main loop
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(30) & 0xFF == ord('q'):
         current_message = MESSAGES[-3]
         print(current_message)
         break
